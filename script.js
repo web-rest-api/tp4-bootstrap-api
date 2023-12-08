@@ -145,6 +145,11 @@ const postData = (newTitle, newImageUrl, bookId) => {
 			toast.show()
 			// update DOM
 			const selectedCard = document.getElementById(`${bookId}`)
+			fetch(url).then((res) => {
+				res.json().then((data) => {
+					selectedCard.children[0].src = data.imageUrl
+				})
+			})
 			console.log(selectedCard)
 		})
 		.catch((error) => {
