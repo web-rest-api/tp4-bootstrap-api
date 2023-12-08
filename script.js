@@ -1,11 +1,34 @@
 const appSection = document.querySelector(".app")
 
+/*  app inisialilzation  */
+const appInit = () => {
+	fetchData("https://basic-rest-flask.martinpedraza.repl.co/api/boks")
+}
+
 /* fetch data   */
+const fetchData = (url) => {
+	fetch(url)
+		.then((res) => {
+			if (res.ok) {
+			} else {
+				appSection.innerHTML =
+					"<h2 class='text-danger'>Error fetching data ...</h2>"
+			}
+		})
+		.catch(
+			(err) =>
+				(appSection.innerHTML =
+					"<h2 class='text-danger'>Error fetching data ...</h2>")
+		)
+}
 
 /*  write html  */
 
 /*  handle clicks  */
 
+appInit()
+
+/*
 fetch("https://basic-rest-flask.martinpedraza.repl.co/api/books")
 	.then((response) => response.json())
 	.then((livres) => {
@@ -27,3 +50,4 @@ fetch("https://basic-rest-flask.martinpedraza.repl.co/api/books")
 		const editBtnArray = document.querySelectorAll(".edit")
 		console.log(editBtnArray, "select btns ...")
 	})
+    */
