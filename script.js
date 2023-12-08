@@ -79,18 +79,36 @@ const handleClicks = (btnsArray, objects) => {
 			modalBody.innerHTML = `
                 <form>
                    <div class="mb-3">
-                        <label for="title" class="form-label">Titles</label>
+                        <label for="title" class="form-label">Title</label>
                         <input required type="text" class="form-control" id="title" value="${objects[i].title}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageUrl" class="form-label">Image URL</label>
+                        <input required type="text" class="form-control" id="imageUrl" value="${objects[i].imageUrl}" >
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             `
+			const formulaire = document.querySelector("form")
+
+			formulaire.addEventListener("submit", (e) => {
+				e.preventDefault()
+				handleFormSubmit(
+					formulaire.title.value,
+					formulaire.imageUrl.value,
+					objects[i].id
+				)
+			})
 		})
 	})
 }
 
+/*  handle submit  */
+const handleFormSubmit = (newTitle, newImageUrl, bookId) => {
+	console.log(newTitle, newImageUrl, bookId)
+}
 appInit()
 
 /*
