@@ -90,7 +90,7 @@ const handleClicks = (btnsArray, objects) => {
                         <input required type="text" class="form-control" id="imageUrl" value="${objects[i].imageUrl}" >
                     </div>
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-dark">Save</button>
                     </div>
                 </form>
             `
