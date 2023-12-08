@@ -49,6 +49,7 @@ const fetchData = (url, callback) => {
  * @throws {TypeError} Will throw an error if livres is not an array.
  */
 const writeHtml = (livres) => {
+	document.querySelector(".spinner-container").style.display = "none"
 	livres.forEach((livre) => {
 		appSection.innerHTML += `
             <div class="col">
@@ -118,7 +119,7 @@ const postData = (newTitle, newImageUrl, bookId) => {
 	const modal = bootstrap.Modal.getInstance(myModalEl)
 
 	/*  POST FETCH  */
-	const url = `https://basic-rest-flask.martinpedraza.repl.co/api/books/${bookId}` // Replace with your endpoint URL
+	const url = `https://basic-rest-flask.martinpedraza.repl.co/api/books/${bookId}`
 
 	const data = {
 		title: newTitle,
@@ -148,6 +149,7 @@ const postData = (newTitle, newImageUrl, bookId) => {
 			fetch(url).then((res) => {
 				res.json().then((data) => {
 					selectedCard.children[0].src = data.imageUrl
+					selectedCard.children[1].children[0].textContent = data.title
 				})
 			})
 			console.log(selectedCard)
