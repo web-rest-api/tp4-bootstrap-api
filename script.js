@@ -2,7 +2,7 @@ const appSection = document.querySelector(".app")
 
 /*  app inisialilzation  */
 const appInit = () => {
-	fetchData("https://basic-rest-flask.martinpedraza.repl.co/api/boks")
+	fetchData("https://basic-rest-flask.martinpedraza.repl.co/api/books")
 }
 
 /* fetch data   */
@@ -11,14 +11,16 @@ const fetchData = (url) => {
 		.then((res) => {
 			if (res.ok) {
 			} else {
-				appSection.innerHTML =
-					"<h2 class='text-danger'>Error fetching data ...</h2>"
+				appSection.innerHTML = `<h2 class='text-danger'>Error fetching data ...</h2>
+                    <img src="./offline.gif" alt="offline" >
+                    `
 			}
 		})
 		.catch(
 			(err) =>
-				(appSection.innerHTML =
-					"<h2 class='text-danger'>Error fetching data ...</h2>")
+				(appSection.innerHTML = `<h2 class='text-danger'>Error fetching data ...</h2>
+                    <img src="./offline.gif" alt="offline" >
+                    `)
 		)
 }
 
