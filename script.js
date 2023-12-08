@@ -1,5 +1,6 @@
 const appSection = document.querySelector(".app")
 const modalTitle = document.querySelector(".modal-title")
+const modalBody = document.querySelector(".modal-body")
 
 /*  app inisialilzation  */
 const appInit = () => {
