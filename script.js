@@ -63,18 +63,30 @@ const writeHtml = (livres) => {
             `
 	})
 	const editBtnArray = document.querySelectorAll(".edit")
-	handleClicks(editBtnArray)
+	handleClicks(editBtnArray, livres)
 }
 
 /*  handle clicks  */
 /**
  *
  * @param {NodeList|HTMLCollection|Array} btnsArray // nodes from the DOM
+ * @param {Array} objects // an array of items
  */
-const handleClicks = (btnsArray) => {
-	btnsArray.forEach((btn) => {
+const handleClicks = (btnsArray, objects) => {
+	btnsArray.forEach((btn, i) => {
 		btn.addEventListener("click", () => {
-			console.log("clicked edit")
+			modalTitle.textContent = "Edit mode"
+			modalBody.innerHTML = `
+                <form>
+                   <div class="mb-3">
+                        <label for="title" class="form-label">Titles</label>
+                        <input required type="text" class="form-control" id="title" value="${objects[i].title}" >
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            `
 		})
 	})
 }
