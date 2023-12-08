@@ -10,6 +10,11 @@
 			integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 			crossorigin="anonymous"
 		/>
+		<style>
+			.toast-header img {
+				max-width: 50px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container">
@@ -50,6 +55,29 @@
 						</button>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<!--  TOAST  -->
+		<div class="toast-container position-fixed bottom-0 end-0 p-3">
+			<div
+				id="liveToast"
+				class="toast"
+				role="alert"
+				aria-live="assertive"
+				aria-atomic="true"
+			>
+				<div class="toast-header bg-light">
+					<img src="./ok.jpg" class="rounded me-2" alt="ok message" />
+					<strong class="me-auto">Message</strong>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="toast"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="toast-body">...</div>
 			</div>
 		</div>
 

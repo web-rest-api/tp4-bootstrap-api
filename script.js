@@ -2,6 +2,8 @@ const appSection = document.querySelector(".app")
 const modalTitle = document.querySelector(".modal-title")
 const modalBody = document.querySelector(".modal-body")
 
+const toastBody = document.querySelector(".toast-body")
+
 /*  app inisialilzation  */
 const appInit = () => {
 	fetchData(
@@ -50,7 +52,7 @@ const writeHtml = (livres) => {
 	livres.forEach((livre) => {
 		appSection.innerHTML += `
             <div class="col">
-                <article class="card">                
+                <article class="card" id="${livre.id}">                
                     <img src="${livre.imageUrl}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${livre.title}</h5>
@@ -108,7 +110,49 @@ const handleClicks = (btnsArray, objects) => {
 /*  handle submit  */
 const handleFormSubmit = (newTitle, newImageUrl, bookId) => {
 	console.log(newTitle, newImageUrl, bookId)
+	postData(newTitle, newImageUrl, bookId)
 }
+/* post data  */
+const postData = (newTitle, newImageUrl, bookId) => {
+	const myModalEl = document.querySelector("#bookModal")
+	const modal = bootstrap.Modal.getInstance(myModalEl)
+
+	/*  POST FETCH  */
+	const url = `https://basic-rest-flask.martinpedraza.repl.co/api/books/${bookId}` // Replace with your endpoint URL
+
+	const data = {
+		title: newTitle,
+		imageUrl: newImageUrl,
+	}
+
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	}
+
+	fetch(url, options)
+		.then((response) => response.json())
+		.then((data) => {
+			console.log("Response:", data)
+			modal.hide()
+			// show confirmation mesasge
+			const toastLiveExample = document.getElementById("liveToast")
+			const toast = new bootstrap.Toast(toastLiveExample)
+			toastBody.textContent = data.msg
+			toast.show()
+			// update DOM
+			const selectedCard = document.getElementById(`${bookId}`)
+			console.log(selectedCard)
+		})
+		.catch((error) => {
+			console.error("Error:", error)
+			// Handle any errors
+		})
+}
+
 appInit()
 
 /*
