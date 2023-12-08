@@ -137,8 +137,9 @@ const postData = (newTitle, newImageUrl, bookId) => {
 	fetch(url, options)
 		.then((response) => response.json())
 		.then((data) => {
-			console.log("Response:", data)
+			// console.log("Response:", data)
 			modal.hide()
+			appSection.style.display = "none"
 			// show confirmation mesasge
 			const toastLiveExample = document.getElementById("liveToast")
 			const toast = new bootstrap.Toast(toastLiveExample)
@@ -152,7 +153,11 @@ const postData = (newTitle, newImageUrl, bookId) => {
 					selectedCard.children[1].children[0].textContent = data.title
 				})
 			})
-			console.log(selectedCard)
+			setInterval(() => {
+				toast.hide()
+				appSection.style.display = "flex"
+			}, 1650)
+			// console.log(selectedCard)
 		})
 		.catch((error) => {
 			console.error("Error:", error)
