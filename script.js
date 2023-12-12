@@ -15,19 +15,39 @@ addBtn.addEventListener("click", () => {
 	modalTitle.textContent = "Add a book"
 	modalBody.innerHTML = `
                 <form>
-                   <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input required type="text" class="form-control" id="title"  >
+                   	<div class="mb-3">
+				   		<label for="title" class="form-label">Title</label>
+				   		<input required type="text" class="form-control" id="title"  >
                     </div>
                     <div class="mb-3">
                         <label for="imageUrl" class="form-label">Image URL</label>
                         <input required type="text" class="form-control" id="imageUrl"  >
-                    </div>
-                    <div class="d-grid">
+						<div class="img-preview d-none"></div>
+					</div>
+						<div class="d-grid">
                         <button type="submit" class="btn btn-dark">Save</button>
-                    </div>
-                </form>
-            `
+					</div>
+				</form>
+				
+				`
+
+	const imageUrlDOM = document.querySelector("#imageUrl")
+	console.log(imageUrlDOM)
+
+	imageUrlDOM.addEventListener("input", () => {
+		const imagePreview = document.querySelector(".img-preview")
+		const formulaire = document.querySelector("form")
+
+		imagePreview.classList.remove("d-none")
+		imagePreview.innerHTML = `<img src="${imageUrlDOM.value}" alt="image preview" class="mt-2 img-thumbnail" > `
+
+		formulaire.addEventListener("submit", (e) => {
+			const newValue = formulaire.title.value
+			const newImage = formulaire.imageUrl.value
+			e.preventDefault()
+			console.log(newValue, newImage)
+		})
+	})
 })
 
 /*  app inisialilzation  */
@@ -51,16 +71,16 @@ const fetchData = (url, callback) => {
 					callback(data)
 				})
 			} else {
-				appSection.innerHTML = `<h2 class='text-danger'>Error fetching data ...</h2>
-                    <img src="./offline.gif" alt="offline" >
+				appSection.innerHTML = `<h2 class='text-danger text-center'>Error fetching data ...</h2>
+                    <img src="./assets/offline.gif" alt="offline" >
                     `
 			}
 		})
 		.catch(
 			(err) =>
-				(appSection.innerHTML = `<h2 class='text-danger'>Error fetching data ...</h2>
+				(appSection.innerHTML = `<h2 class='text-danger text-center'>Error fetching data ...</h2>
                 <p>${err}</p>
-                    <img src="./offline.gif" alt="offline" >
+                    <img src="./assets/	offline.gif" alt="offline" >
                     `)
 		)
 }
