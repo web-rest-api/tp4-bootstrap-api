@@ -6,6 +6,9 @@ const addBtn = document.querySelector(".add-btn")
 
 const toastBody = document.querySelector(".toast-body")
 
+/*  base url for the API  */
+const baseUrl = "https://basic-rest-flask.martinpedraza.repl.co/api/books"
+
 /*  event listeners */
 // ADD btn
 addBtn.addEventListener("click", () => {
@@ -29,8 +32,7 @@ addBtn.addEventListener("click", () => {
 
 /*  app inisialilzation  */
 const appInit = () => {
-	const url = "https://basic-rest-flask.martinpedraza.repl.co/api/books"
-	fetchData(url, writeHtml)
+	fetchData(baseUrl, writeHtml)
 }
 
 /**
