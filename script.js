@@ -2,14 +2,35 @@ const appSection = document.querySelector(".app")
 const modalTitle = document.querySelector(".modal-title")
 const modalBody = document.querySelector(".modal-body")
 
+const addBtn = document.querySelector(".add-btn")
+
 const toastBody = document.querySelector(".toast-body")
+
+/*  event listeners */
+// ADD btn
+addBtn.addEventListener("click", () => {
+	modalTitle.textContent = "Add a book"
+	modalBody.innerHTML = `
+                <form>
+                   <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input required type="text" class="form-control" id="title"  >
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageUrl" class="form-label">Image URL</label>
+                        <input required type="text" class="form-control" id="imageUrl"  >
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-dark">Save</button>
+                    </div>
+                </form>
+            `
+})
 
 /*  app inisialilzation  */
 const appInit = () => {
-	fetchData(
-		"https://basic-rest-flask.martinpedraza.repl.co/api/books",
-		writeHtml
-	)
+	const url = "https://basic-rest-flask.martinpedraza.repl.co/api/books"
+	fetchData(url, writeHtml)
 }
 
 /**
