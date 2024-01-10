@@ -7,7 +7,8 @@ const addBtn = document.querySelector(".add-btn")
 const toastBody = document.querySelector(".toast-body")
 
 /*  base url for the API  */
-const baseUrl = "https://basic-rest-flask.martinpedraza.repl.co/api/books"
+const baseUrl =
+	"https://554ccdee-b663-40d7-95ae-2e9b69de0806-00-243hu2xt7seyr.worf.replit.dev/api/books"
 
 /*  event listeners */
 // ADD btn
@@ -93,6 +94,7 @@ const fetchData = (url, callback) => {
  */
 const writeHtml = (livres) => {
 	document.querySelector(".spinner-container").style.display = "none"
+	console.log(livres)
 	livres.forEach((livre) => {
 		appSection.innerHTML += `
             <div class="col">
@@ -162,7 +164,7 @@ const postData = (newTitle, newImageUrl, bookId) => {
 	const modal = bootstrap.Modal.getInstance(myModalEl)
 
 	/*  POST FETCH  */
-	const url = `https://basic-rest-flask.martinpedraza.repl.co/api/books/${bookId}`
+	const url = `https://554ccdee-b663-40d7-95ae-2e9b69de0806-00-243hu2xt7seyr.worf.replit.dev/api/books/${bookId}`
 
 	const data = {
 		title: newTitle,
